@@ -1,4 +1,4 @@
-# ml_fundamentals
+# Overview
 Google Colab notebooks to study machine learning fundamental algorithms. 
 
 # Keywords for study 
