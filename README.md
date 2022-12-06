@@ -9,9 +9,9 @@ Google Colab notebooks to study machine learning fundamental algorithms.
 - Decision Trees 
 - Naive Bayes 
 - Neural Network 
- - Gradient Descent(Stochastic/Batch/MiniBatch)
- - Regularization 
- - Optimizers
- - Batch Normalization 
- - Weight Initialization 
- - Activation functions
+  - Gradient Descent(Stochastic/Batch/MiniBatch)
+  - Regularization 
+  - Optimizers
+  - Batch Normalization 
+  - Weight Initialization 
+  - Activation functions
