@@ -8,6 +8,7 @@ Google Colab notebooks to study machine learning fundamental algorithms.
 - K-Means Clustering 
 - Decision Trees 
 - Naive Bayes 
+- Support Vector Machine
 - Neural Network 
   - Gradient Descent(Stochastic/Batch/MiniBatch)
   - Regularization 
