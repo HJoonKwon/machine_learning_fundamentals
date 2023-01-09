@@ -2,17 +2,17 @@
 Google Colab notebooks to study machine learning fundamental algorithms. 
 
 # Keywords for study 
-- Linear Regression 
-- Logistic Regression
-- K-Nearest Neighbors 
-- K-Means Clustering 
-- Decision Trees 
-- Naive Bayes 
-- Support Vector Machine
-- Neural Network 
-  - Gradient Descent(Stochastic/Batch/MiniBatch)
-  - Regularization 
-  - Optimizers
-  - Batch Normalization 
-  - Weight Initialization 
-  - Activation functions
+- [x] Linear Regression 
+- [x] Logistic Regression
+- [x] K-Nearest Neighbors 
+- [x] K-Means Clustering 
+- [ ] Decision Trees 
+- [x] Naive Bayes 
+- [x] Support Vector Machine
+- [ ] Neural Network 
+  - [x] Gradient Descent
+  - [ ] Regularization 
+  - [ ] Optimizers
+  - [ ] Batch Normalization 
+  - [ ] Weight Initialization 
+  - [x] Activation functions
