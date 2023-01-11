@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def mean_and_std(X: np.ndarray, Y: np.ndarray):
+def mean_and_std(X: np.ndarray, Y: np.ndarray) -> tuple[np.ndarray, ...]:
 
     # input
     # X: m x n
@@ -19,7 +19,7 @@ def mean_and_std(X: np.ndarray, Y: np.ndarray):
     return means, stds
 
 
-def normalize(X: np.ndarray):
+def normalize(X: np.ndarray) -> np.ndarray:
 
     # X: m x n
 
@@ -47,7 +47,7 @@ class GaussianNaiveBayes():
                                        axis=1).reshape(1, -1)
         return log_likelihood
 
-    def log_priors(self):
+    def log_priors(self) -> np.ndarray:
         # log(P(Y))
         priors = np.zeros(self.classes.shape)
         for cls in self.classes:
@@ -55,7 +55,7 @@ class GaussianNaiveBayes():
                 self.train_Y)
         return np.log(priors).reshape(-1, 1)
 
-    def log_scores(self, X: np.ndarray):
+    def log_scores(self, X: np.ndarray) -> np.ndarray:
         # X: (m x n)
         # scores = posterior * evidence (we don't need to calculate evidence)
         log_priors = self.log_priors()
@@ -68,7 +68,7 @@ class GaussianNaiveBayes():
         self.train_Y = Y
         self.classes = np.unique(self.train_Y)
 
-    def predict(self, X: np.ndarray):
+    def predict(self, X: np.ndarray) -> np.ndarray:
         log_scores = self.log_scores(X)
         preds = np.argmax(log_scores, axis=0)
         return preds
