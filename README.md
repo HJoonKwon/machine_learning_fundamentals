@@ -1,5 +1,5 @@
 # Overview
-Google Colab notebooks to study machine learning fundamental algorithms. 
+To understand what is going on behind the scene, I Implemented machine learning fundamental algorithms from scratch using Numpy with simple examples on the Jupyter notebook. Some of the concepts are simplifed or skipped to focus on its original purpose. 
 
 # Keywords for study 
 - [x] Linear Regression 
