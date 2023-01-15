@@ -7,10 +7,10 @@ To understand fast growing technologies in machine learning, we need to understa
 - [x] K-Nearest Neighbors 
 - [x] K-Means Clustering 
 - [ ] Decision Trees 
- - [ ] Random Forest 
- - [ ] Bagging
- - [ ] Boosting
- - [ ] Pasting 
+  - [ ] Random Forest 
+  - [ ] Bagging
+  - [ ] Boosting
+  - [ ] Pasting 
 - [x] Naive Bayes 
 - [x] Support Vector Machine
 - [ ] Dimensionality Reduction
