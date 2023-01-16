@@ -29,7 +29,7 @@ def load_data(data_dir: str) -> tuple[np.ndarray, ...]:
 # Define blocks to define MLP
 
 
-def linear_foward(A_prev: np.ndarray, W: np.ndarray,
+def linear_forward(A_prev: np.ndarray, W: np.ndarray,
                   b: np.ndarray) -> tuple[np.ndarray, tuple[np.ndarray, ...]]:
     Z = W @ A_prev + b
     cache = (A_prev, W, b)
@@ -42,7 +42,7 @@ def linear_activation_forward(
     b: np.ndarray,
     activation='relu'
 ) -> tuple[np.ndarray, tuple[np.ndarray, tuple[np.ndarray, ...]]]:
-    Z, linear_cache = linear_foward(A_prev, W, b)
+    Z, linear_cache = linear_forward(A_prev, W, b)
     if activation == 'relu':
         A, activation_cache = relu(Z)
     elif activation == 'sigmoid':
@@ -55,9 +55,10 @@ def linear_activation_forward(
 def linear_backward(dZ: np.ndarray, cache: tuple[np.ndarray, ...]):
     A_prev, W, b = cache
     m = dZ.shape[1]
+    dA_prev =  W.T @ dZ
     dW = 1 / m * dZ @ A_prev.T
     db = 1 / m * np.sum(dZ, axis=1, keepdims=True)
-    return (dW, db)
+    return (dA_prev, dW, db)
 
 
 def linear_activation_backward(dA: np.ndarray,
@@ -72,13 +73,14 @@ def linear_activation_backward(dA: np.ndarray,
     else:
         assert False, f"Not supported activation function:{activation}"
 
-    dW, db = linear_backward(dZ, linear_cache)
+    dA_prev, dW, db = linear_backward(dZ, linear_cache)
 
-    return (dW, db)
+    return (dA_prev, dW, db)
 
 
 def cross_entropy(AL: np.ndarray, Y: np.ndarray) -> float:
-    loss = -(Y @ np.log(AL).T + (1 - Y) @ np.log(1 - AL).T)
+    m = Y.shape[1]
+    loss = - 1/m * (Y @ np.log(AL).T + (1 - Y) @ np.log(1 - AL).T)
     return np.squeeze(loss)
 
 
