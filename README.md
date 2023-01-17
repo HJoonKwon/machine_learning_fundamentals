@@ -21,7 +21,7 @@ To understand fast growing technologies in machine learning, we need to understa
   - [ ] Regularization 
   - [ ] Optimizers
   - [ ] Batch Normalization 
-  - [ ] Weight Initialization 
+  - [X] Weight Initialization 
   - [x] Activation functions
 
 ## References 
