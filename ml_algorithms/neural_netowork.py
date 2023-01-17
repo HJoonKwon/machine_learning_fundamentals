@@ -121,6 +121,7 @@ class MultiLayerPerceptron():
         self.seed = seed
         self.parameters = self.initialize_parameters()
         self.caches = []
+        self.grads = {}
 
     def initialize_parameters(self) -> dict:
         # Xavier initialization
@@ -155,7 +156,7 @@ class MultiLayerPerceptron():
         self.caches = caches
         return AL
 
-    def backward(self, AL: np.ndarray, Y: np.ndarray):
+    def backward(self, AL: np.ndarray, Y: np.ndarray) -> None:
         L = len(self.layer_dims) - 1
         grads = {}
 
@@ -171,7 +172,7 @@ class MultiLayerPerceptron():
                                                                  str(l)],
                                                            self.caches[l-1],
                                                            activation='relu')
-        return grads
+        self.grads = grads
 
     def update_paramters(self):
         pass
