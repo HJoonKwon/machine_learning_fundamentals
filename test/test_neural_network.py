@@ -119,14 +119,3 @@ def test_update_parameters():
     assert np.allclose(parameters['b1'], b1_gt)
     assert np.allclose(parameters['W2'], W2_gt)
     assert np.allclose(parameters['b2'], b2_gt)
-
-
-# if __name__ == '__main__':
-#     test_linear_forward()
-#     test_linear_activation_forward()
-#     test_L_model_forward_2hidden()
-#     test_linear_backward()
-#     test_linear_activation_backward()
-#     test_deep_linear_activation_backward()
-#     test_update_parameters()
-#     test_compute_cost()
