@@ -83,22 +83,24 @@ def test_linear_activation_backward():
     assert np.allclose(db, db_gt)
 
 
-# def test_deep_linear_activation_backward():
-#     AL, Y_assess, caches = L_model_backward_test_case()
-#     grads = deep_linear_activation_backward(AL, Y_assess, caches)
-#     dW1_gt = np.array([[0.41010002, 0.07807203, 0.13798444, 0.10502167],
-#                        [
-#                            0.,
-#                            0.,
-#                            0.,
-#                            0.,
-#                        ], [0.05283652, 0.01005865, 0.01777766, 0.0135308]])
-#     db1_gt = np.array([[-0.22007063], [0.], [-0.02835349]])
-#     dA1_gt = np.array([[0.12913162, -0.44014127], [-0.14175655, 0.48317296],
-#                        [0.01663708, -0.05670698]])
-#     assert np.allclose(grads['dW1'], dW1_gt)
-#     assert np.allclose(grads['db1'], db1_gt)
-#     assert np.allclose(grads['dA1'], dA1_gt)
+def test_deep_linear_activation_backward():
+    AL, Y_assess, caches = L_model_backward_test_case()
+    model = MultiLayerPerceptron(layer_dims=[1]*3)
+    model.caches = caches
+    grads = model.backward(AL, Y_assess)
+    dW1_gt = np.array([[0.41010002, 0.07807203, 0.13798444, 0.10502167],
+                       [
+                           0.,
+                           0.,
+                           0.,
+                           0.,
+                       ], [0.05283652, 0.01005865, 0.01777766, 0.0135308]])
+    db1_gt = np.array([[-0.22007063], [0.], [-0.02835349]])
+    dA1_gt = np.array([[0.12913162, -0.44014127], [-0.14175655, 0.48317296],
+                       [0.01663708, -0.05670698]])
+    assert np.allclose(grads['dW1'], dW1_gt)
+    assert np.allclose(grads['db1'], db1_gt)
+    assert np.allclose(grads['dA1'], dA1_gt)
 
 
 # def test_update_parameters():

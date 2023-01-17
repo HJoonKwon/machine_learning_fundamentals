@@ -156,15 +156,22 @@ class MultiLayerPerceptron():
         return AL
 
     def backward(self, AL: np.ndarray, Y: np.ndarray):
-        # L = len(self.layer_dims) - 1
-        # grads = {}
+        L = len(self.layer_dims) - 1
+        grads = {}
 
-        # dAL = cross_entropy_backward(AL, Y)
-        # grads['dA' + str(L)] = dAL
-        # grads['dA' + str(L - 1)], grads['W' + str(L)], grads[
-        #     'b' + str(L)] = linear_activation_backward(dAL, self.caches[L])
-
-        pass
+        dAL = cross_entropy_backward(AL, Y)
+        grads['dA' + str(L)] = dAL
+        grads['dA' + str(L - 1)], grads['dW' + str(L)], grads[
+            'db' + str(L)] = linear_activation_backward(grads['dA' + str(L)],
+                                                       self.caches[L-1],
+                                                       activation='sigmoid')
+        for l in range(L - 1, 0, -1):
+            grads['dA' + str(l - 1)], grads['dW' + str(l)], grads[
+                'db' + str(l)] = linear_activation_backward(grads['dA' +
+                                                                 str(l)],
+                                                           self.caches[l-1],
+                                                           activation='relu')
+        return grads
 
     def update_paramters(self):
         pass
