@@ -1,6 +1,6 @@
 from cases_neural_network import *
 
-from ml_algorithms.neural_netowork import *
+from ml_algorithms.neural_network import *
 
 
 def test_linear_forward():
