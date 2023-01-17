@@ -122,6 +122,7 @@ class MultiLayerPerceptron():
         self.parameters = self.initialize_parameters()
         self.caches = []
         self.grads = {}
+        self.train = True
 
     def initialize_parameters(self) -> dict:
         # Xavier initialization
@@ -146,15 +147,23 @@ class MultiLayerPerceptron():
                 self.parameters['W' + str(l)],
                 self.parameters['b' + str(l)],
                 activation='relu')
-            caches.append(linear_activation_backward)
+            if self.train:
+                caches.append(linear_activation_cache)
         AL, linear_activation_cache = linear_activation_forward(
             A_prev,
             self.parameters['W' + str(L)],
             self.parameters['b' + str(L)],
             activation='sigmoid')
-        caches.append(linear_activation_cache)
+        if self.train:
+            caches.append(linear_activation_cache)
         self.caches = caches
         return AL
+
+    def predict(self, X:np.ndarray):
+        self.train = False
+        AL = self.forward(X)
+        preds = AL >= 0.5
+        return preds
 
     def backward(self, AL: np.ndarray, Y: np.ndarray) -> dict:
         L = len(self.layer_dims) - 1
