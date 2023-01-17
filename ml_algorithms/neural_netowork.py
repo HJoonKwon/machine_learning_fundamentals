@@ -30,7 +30,7 @@ def load_data(data_dir: str) -> tuple[np.ndarray, ...]:
 
 
 def linear_forward(A_prev: np.ndarray, W: np.ndarray,
-                  b: np.ndarray) -> tuple[np.ndarray, tuple[np.ndarray, ...]]:
+                   b: np.ndarray) -> tuple[np.ndarray, tuple[np.ndarray, ...]]:
     Z = W @ A_prev + b
     cache = (A_prev, W, b)
     return Z, cache
@@ -55,7 +55,7 @@ def linear_activation_forward(
 def linear_backward(dZ: np.ndarray, cache: tuple[np.ndarray, ...]):
     A_prev, W, b = cache
     m = dZ.shape[1]
-    dA_prev =  W.T @ dZ
+    dA_prev = W.T @ dZ
     dW = 1 / m * dZ @ A_prev.T
     db = 1 / m * np.sum(dZ, axis=1, keepdims=True)
     return (dA_prev, dW, db)
@@ -80,8 +80,13 @@ def linear_activation_backward(dA: np.ndarray,
 
 def cross_entropy(AL: np.ndarray, Y: np.ndarray) -> float:
     m = Y.shape[1]
-    loss = - 1/m * (Y @ np.log(AL).T + (1 - Y) @ np.log(1 - AL).T)
+    loss = -1 / m * (Y @ np.log(AL).T + (1 - Y) @ np.log(1 - AL).T)
     return np.squeeze(loss)
+
+
+def cross_entropy_backward(AL: np.ndarray, Y: np.ndarray) -> np.ndarray:
+    dAL = -np.divide(Y, AL) + np.divide(1 - Y, 1 - AL)
+    return dAL
 
 
 def sigmoid(Z: np.ndarray) -> tuple[np.ndarray, ...]:
@@ -111,16 +116,54 @@ def relu_backward(dA: np.ndarray, cache: np.ndarray) -> np.ndarray:
 
 
 class MultiLayerPerceptron():
-    def __init__(self):
-        pass
+    def __init__(self, layer_dims: list = [100, 50, 20, 1], seed=42):
+        self.layer_dims = layer_dims
+        self.seed = seed
+        self.parameters = self.initialize_parameters()
+        self.caches = []
 
-    def initialize_parameters(self):
-        pass
+    def initialize_parameters(self) -> dict:
+        # Xavier initialization
+        np.random.seed(self.seed)
+        L = len(self.layer_dims) - 1
+        parameters = {}
+        for l in range(1, L + 1):
+            parameters['W' + str(l)] = np.random.randn(
+                self.layer_dims[l], self.layer_dims[l - 1]) / np.sqrt(
+                    self.layer_dims[l - 1])
+            parameters['b' + str(l)] = np.zeros((self.layer_dims[l], 1))
+        return parameters
 
-    def forward(self):
-        pass
+    def forward(self, X: np.ndarray) -> np.ndarray:
 
-    def backward(self):
+        L = len(self.layer_dims) - 1
+        A_prev = X
+        caches = []
+        for l in range(1, L):
+            A_prev, linear_activation_cache = linear_activation_forward(
+                A_prev,
+                self.parameters['W' + str(l)],
+                self.parameters['b' + str(l)],
+                activation='relu')
+            caches.append(linear_activation_backward)
+        AL, linear_activation_cache = linear_activation_forward(
+            A_prev,
+            self.parameters['W' + str(L)],
+            self.parameters['b' + str(L)],
+            activation='sigmoid')
+        caches.append(linear_activation_cache)
+        self.caches = caches
+        return AL
+
+    def backward(self, AL: np.ndarray, Y: np.ndarray):
+        # L = len(self.layer_dims) - 1
+        # grads = {}
+
+        # dAL = cross_entropy_backward(AL, Y)
+        # grads['dA' + str(L)] = dAL
+        # grads['dA' + str(L - 1)], grads['W' + str(L)], grads[
+        #     'b' + str(L)] = linear_activation_backward(dAL, self.caches[L])
+
         pass
 
     def update_paramters(self):

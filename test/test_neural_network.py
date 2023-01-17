@@ -25,12 +25,13 @@ def test_linear_activation_forward():
     assert np.allclose(A, A_gt)
 
 
-# def test_L_model_forward_2hidden():
-#     X, parameters = L_model_forward_test_case_2hidden()
-#     AL, caches = deep_linear_activation_forward(X, parameters)
-#     AL_gt = np.array([[0.03921668, 0.70498921, 0.19734387, 0.04728177]])
-#     assert np.allclose(AL, AL_gt)
-#     assert len(caches) == 3
+def test_L_model_forward_2hidden():
+    X, parameters = L_model_forward_test_case_2hidden()
+    model = MultiLayerPerceptron(layer_dims=[1]*4)
+    model.parameters = parameters
+    AL = model.forward(X)
+    AL_gt = np.array([[0.03921668, 0.70498921, 0.19734387, 0.04728177]])
+    assert np.allclose(AL, AL_gt)
 
 
 def test_compute_cost():
