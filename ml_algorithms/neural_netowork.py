@@ -156,7 +156,7 @@ class MultiLayerPerceptron():
         self.caches = caches
         return AL
 
-    def backward(self, AL: np.ndarray, Y: np.ndarray) -> None:
+    def backward(self, AL: np.ndarray, Y: np.ndarray) -> dict:
         L = len(self.layer_dims) - 1
         grads = {}
 
@@ -173,6 +173,11 @@ class MultiLayerPerceptron():
                                                            self.caches[l-1],
                                                            activation='relu')
         self.grads = grads
+        return self.grads
 
-    def update_paramters(self):
-        pass
+    def update_parameters(self, learning_rate: float = 0.01):
+        L = len(self.layer_dims) - 1
+        for l in range(1, L+1):
+            self.parameters['W'+str(l)] -= learning_rate * self.grads['dW'+str(l)]
+            self.parameters['b'+str(l)] -= learning_rate * self.grads['db'+str(l)]
+        return self.parameters

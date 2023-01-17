@@ -27,7 +27,7 @@ def test_linear_activation_forward():
 
 def test_L_model_forward_2hidden():
     X, parameters = L_model_forward_test_case_2hidden()
-    model = MultiLayerPerceptron(layer_dims=[1]*4)
+    model = MultiLayerPerceptron(layer_dims=[1] * 4)
     model.parameters = parameters
     AL = model.forward(X)
     AL_gt = np.array([[0.03921668, 0.70498921, 0.19734387, 0.04728177]])
@@ -85,7 +85,7 @@ def test_linear_activation_backward():
 
 def test_deep_linear_activation_backward():
     AL, Y_assess, caches = L_model_backward_test_case()
-    model = MultiLayerPerceptron(layer_dims=[1]*3)
+    model = MultiLayerPerceptron(layer_dims=[1] * 3)
     model.caches = caches
     grads = model.backward(AL, Y_assess)
     dW1_gt = np.array([[0.41010002, 0.07807203, 0.13798444, 0.10502167],
@@ -103,19 +103,22 @@ def test_deep_linear_activation_backward():
     assert np.allclose(grads['dA1'], dA1_gt)
 
 
-# def test_update_parameters():
-#     parameters, grads = update_parameters_test_case()
-#     parameters = update_parameters(parameters, grads, 0.1)
-#     W1_gt = np.array([[-0.59562069, -0.09991781, -2.14584584, 1.82662008],
-#                       [-1.76569676, -0.80627147, 0.51115557, -1.18258802],
-#                       [-1.0535704, -0.86128581, 0.68284052, 2.20374577]])
-#     b1_gt = np.array([[-0.04659241], [-1.28888275], [0.53405496]])
-#     W2_gt = np.array([[-0.55569196, 0.0354055, 1.32964895]])
-#     b2_gt = np.array([[-0.84610769]])
-#     assert np.allclose(parameters['W1'], W1_gt)
-#     assert np.allclose(parameters['b1'], b1_gt)
-#     assert np.allclose(parameters['W2'], W2_gt)
-#     assert np.allclose(parameters['b2'], b2_gt)
+def test_update_parameters():
+    parameters, grads = update_parameters_test_case()
+    model = MultiLayerPerceptron(layer_dims=[1] * 3)
+    model.parameters = parameters
+    model.grads = grads
+    parameters = model.update_parameters(0.1)
+    W1_gt = np.array([[-0.59562069, -0.09991781, -2.14584584, 1.82662008],
+                      [-1.76569676, -0.80627147, 0.51115557, -1.18258802],
+                      [-1.0535704, -0.86128581, 0.68284052, 2.20374577]])
+    b1_gt = np.array([[-0.04659241], [-1.28888275], [0.53405496]])
+    W2_gt = np.array([[-0.55569196, 0.0354055, 1.32964895]])
+    b2_gt = np.array([[-0.84610769]])
+    assert np.allclose(parameters['W1'], W1_gt)
+    assert np.allclose(parameters['b1'], b1_gt)
+    assert np.allclose(parameters['W2'], W2_gt)
+    assert np.allclose(parameters['b2'], b2_gt)
 
 
 # if __name__ == '__main__':
