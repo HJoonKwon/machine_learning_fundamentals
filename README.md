@@ -9,20 +9,12 @@ To understand fast growing technologies in machine learning, we need to understa
 `$ pip install -r requirements.txt`
 
 # Keywords checklist  
+
+**Discriminative Models**
+- [x] K-Nearest Neighbors 
 - [x] Linear Regression 
 - [x] Logistic Regression
-- [x] K-Nearest Neighbors 
-- [x] K-Means Clustering 
-- [ ] Decision Trees 
-  - [ ] Random Forest 
-  - [ ] Bagging
-  - [ ] Boosting
-  - [ ] Pasting 
-- [x] Naive Bayes 
 - [x] Support Vector Machine
-- [ ] Dimensionality Reduction
-  - [ ] Principal Component Analysis 
-  - [ ] Locally Linear Embedding 
 - [x] Neural Network 
   - [x] Gradient Descent
   - [ ] Regularization 
@@ -30,6 +22,21 @@ To understand fast growing technologies in machine learning, we need to understa
   - [ ] Batch Normalization 
   - [X] Weight Initialization 
   - [x] Activation functions
+- [ ] Decision Trees 
+  - [ ] Random Forest 
+  - [ ] Bagging
+  - [ ] Boosting
+  - [ ] Pasting 
+  
+**Generative Models**
+- [ ] Naive Bayes 
+- [x] Gaussian Discriminant Algorithm (GDA)
+
+**Others**
+- [x] K-Means Clustering 
+- [ ] Dimensionality Reduction
+  - [ ] Principal Component Analysis 
+  - [ ] Locally Linear Embedding 
 
 ## References 
 I mainly referred to CS230(2018), CS229(2018), and other great articles on Medium. Each notebook has its corresponding references written on the bottom.
