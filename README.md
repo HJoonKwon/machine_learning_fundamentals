@@ -29,8 +29,8 @@ To understand fast growing technologies in machine learning, we need to understa
   - [ ] Pasting 
   
 **Generative Models**
-- [ ] Naive Bayes 
-- [x] Gaussian Discriminant Algorithm (GDA)
+- [x] Naive Bayes 
+- [ ] Gaussian Discriminant Algorithm (GDA)
 
 **Others**
 - [x] K-Means Clustering 
