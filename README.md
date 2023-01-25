@@ -30,7 +30,7 @@ To understand fast growing technologies in machine learning, we need to understa
   
 **Generative Models**
 - [x] Naive Bayes 
-- [ ] Gaussian Discriminant Algorithm (GDA)
+- [ ] Gaussian Discriminant Analysis (GDA)
 
 **Others**
 - [x] K-Means Clustering 
