@@ -32,13 +32,8 @@ class GaussianDiscriminantAnalysis():
         return self.theta
 
 
-    def predict(self):
-        pass
+    def predict(self, X: np.ndarray) -> np.ndarray:
+        # X: (m, n)
+        yhat = 1 / (1 + np.exp(- X.dot(self.theta)))
+        return yhat
 
-
-if __name__ == "__main__":
-    # for test
-    model = GaussianDiscriminantAnalysis()
-    X = np.zeros((6, 5))
-    Y = np.array([0, 1, 0, 1, 0, 1])
-    model.fit(X, Y)
